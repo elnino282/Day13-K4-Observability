@@ -1,3 +1,0 @@
-HỢP LỆ: 6/6 panel có trong dashboard contract.
-
-Ghi chú: ảnh dashboard runtime chụp từ ui/app.py, lưu tại submission/evidence/dashboard-runtime.png.
