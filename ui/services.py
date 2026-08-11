@@ -9,7 +9,7 @@ import pandas as pd
 
 from scripts.manage_prompts import prompt_status
 from scripts.validate_logs import ENRICHMENT_FIELDS, PII_DETECTORS
-from ui.data import dashboard_snapshot, filter_recent, minute_series, read_jsonl, records_frame
+from ui.data import dashboard_snapshot, dashboard_window, minute_series, read_jsonl, records_frame
 from ui.settings import API_BASE_URL, LOG_PATH
 
 
@@ -174,5 +174,5 @@ def run_demo_burst(count: int, scenario: str) -> list[dict[str, Any]]:
 
 def load_dashboard_data(minutes: int):
     frame = records_frame(read_jsonl(LOG_PATH))
-    recent = filter_recent(frame, minutes)
+    recent = dashboard_window(frame, minutes)
     return recent, minute_series(recent), dashboard_snapshot(recent)

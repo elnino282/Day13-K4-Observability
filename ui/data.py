@@ -10,6 +10,11 @@ import pandas as pd
 import yaml
 
 
+DASHBOARD_ACTIVITY_EVENTS = frozenset(
+    {"request_received", "response_sent", "request_failed"}
+)
+
+
 @dataclass(frozen=True)
 class DashboardSnapshot:
     request_count: int
@@ -71,6 +76,21 @@ def filter_recent(
             anchor_ts = anchor_ts.tz_convert(timezone.utc)
     window = pd.to_timedelta(int(minutes), unit="min")
     return frame[frame["ts"] >= anchor_ts - window].copy()
+
+
+def dashboard_window(frame: pd.DataFrame, minutes: int) -> pd.DataFrame:
+    """Select a dashboard window anchored to the latest API telemetry.
+
+    Lifecycle events such as ``app_stopped`` can be newer than the last chat
+    request. Anchoring to every event would make the dashboard look empty even
+    when the log still contains valid request/response telemetry.
+    """
+    if frame.empty:
+        return frame.copy()
+    activity = frame[frame.get("event", pd.Series(index=frame.index, dtype=str)).isin(DASHBOARD_ACTIVITY_EVENTS)]
+    anchor = activity["ts"].max() if not activity.empty else frame["ts"].max()
+    recent = filter_recent(frame, minutes, anchor=anchor)
+    return recent[recent["ts"] <= anchor].copy()
 
 
 def _numeric(frame: pd.DataFrame, field: str) -> pd.Series:

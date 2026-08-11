@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from ui.data import dashboard_snapshot, filter_recent, read_jsonl, records_frame
+from ui.data import dashboard_snapshot, dashboard_window, filter_recent, read_jsonl, records_frame
 
 
 def test_dashboard_snapshot_matches_log_contract(tmp_path: Path) -> None:
@@ -45,3 +45,17 @@ def test_filter_recent_anchors_to_latest_event() -> None:
     recent = filter_recent(frame, 60)
 
     assert len(recent) == 1
+
+
+def test_dashboard_window_ignores_newer_lifecycle_events() -> None:
+    frame = records_frame(
+        [
+            {"ts": "2026-08-11T08:00:00Z", "event": "request_received"},
+            {"ts": "2026-08-11T08:00:01Z", "event": "response_sent", "latency_ms": 120},
+            {"ts": "2026-08-11T10:00:00Z", "event": "app_stopped"},
+        ]
+    )
+
+    recent = dashboard_window(frame, 60)
+
+    assert recent["event"].tolist() == ["request_received", "response_sent"]

@@ -17,9 +17,9 @@
 
 ## 2. Kết quả kỹ thuật
 
-- Điểm `validate_logs.py`: 100/100 trên 144 record, 32 correlation ID — [evidence](evidence/validate-logs-final.txt) (baseline 30/100 tại [đây](evidence/validate-logs-baseline.txt)).
+- Điểm `validate_logs.py`: 100/100 trên 168 record, 34 correlation ID — [evidence](evidence/validate-logs-final.txt) (baseline 30/100 tại [đây](evidence/validate-logs-baseline.txt)).
 - Tổng số traces: 31 trace trong [trace index](evidence/trace-index.md); 15 trace thuộc run cuối khớp đúng `data/logs.jsonl` đang nộp.
-- Số PII leak còn lại: 0/144 log records.
+- Số PII leak còn lại: 0/168 log records.
 - Link/đường dẫn dashboard: contract 6/6 và health check FastAPI/Streamlit tại [evidence](evidence/validate-dashboard.txt). Ảnh runtime lưu tại [dashboard-runtime.png](evidence/dashboard-runtime.png); trước khi nộp cần bảo đảm ảnh là trang **Metrics** và hiển thị đủ sáu panel, cửa sổ 60 phút, đơn vị và threshold.
 
 ## 3. Logging và tracing
