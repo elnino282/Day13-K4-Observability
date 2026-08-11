@@ -1,0 +1,15 @@
+Prompt: day13-chat
+
+Bootstrap:
+{"baseline": 1, "candidate": 2, "production": 1}
+
+Promote candidate:
+{"baseline": 1, "candidate": 2, "production": 2}
+
+Rollback production:
+{"baseline": 1, "candidate": 2, "production": 1}
+
+Langfuse API verification:
+- baseline trace f00edc1a5e8a6457936c6e0f5cb31a56: label=baseline, version=1, source=langfuse
+- candidate trace 28041073697b681ca61de79bd5a25ab5: label=candidate, version=2, source=langfuse
+- post-rollback trace b4d029792a4e68cd0758851eab3a163b: label=production, version=1, source=langfuse

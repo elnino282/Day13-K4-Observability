@@ -1,0 +1,3 @@
+HỢP LỆ: 6/6 panel có trong dashboard contract.
+
+Ghi chú: ảnh dashboard runtime sẽ được bổ sung sau khi merge phần giao diện của thành viên phụ trách dashboard.

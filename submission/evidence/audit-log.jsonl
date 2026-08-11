@@ -1,0 +1,4 @@
+{"ts":"2026-08-11T07:52:54.982943+00:00","event":"audit_event","action":"prompt_promoted","actor":"prompt-cli","correlation_id":"system","details":{"name":"day13-chat","production_version":2}}
+{"ts":"2026-08-11T07:53:04.277458+00:00","event":"audit_event","action":"prompt_rolled_back","actor":"prompt-cli","correlation_id":"system","details":{"name":"day13-chat","production_version":1}}
+{"ts":"2026-08-11T07:55:05.631160+00:00","event":"audit_event","action":"incident_enabled","actor":"control-api","correlation_id":"req-477cd924","details":{"name":"rag_slow"}}
+{"ts":"2026-08-11T07:55:10.627856+00:00","event":"audit_event","action":"incident_disabled","actor":"control-api","correlation_id":"req-1e144e8f","details":{"name":"rag_slow"}}

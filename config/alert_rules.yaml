@@ -1,19 +1,30 @@
 alerts:
-  - name: TODO_alert_1
-    severity: TODO
-    condition: TODO
+  - name: user_latency_slo_breach
+    severity: critical
+    sli: latency_p95_ms
+    condition: latency_p95_ms > 3000 for 5m
+    duration: 5m
     type: symptom-based
-    owner: TODO
+    user_impact: Người dùng chờ phản hồi AI quá 3 giây ở phần đuôi phân phối.
+    owner: observability-on-call
     runbook: docs/alerts.md#alert-1
-  - name: TODO_alert_2
-    severity: TODO
-    condition: TODO
+
+  - name: request_error_slo_breach
+    severity: critical
+    sli: error_rate_pct
+    condition: error_rate_pct > 2 for 5m
+    duration: 5m
     type: symptom-based
-    owner: TODO
+    user_impact: Hơn 2% request không trả được câu trả lời.
+    owner: api-on-call
     runbook: docs/alerts.md#alert-2
-  - name: TODO_alert_3
-    severity: TODO
-    condition: TODO
+
+  - name: daily_cost_budget_at_risk
+    severity: warning
+    sli: daily_cost_usd
+    condition: projected_daily_cost_usd > 2.5 for 15m
+    duration: 15m
     type: symptom-based
-    owner: TODO
+    user_impact: Chi phí dự kiến vượt ngân sách ngày dù traffic không tăng tương ứng.
+    owner: ai-platform-owner
     runbook: docs/alerts.md#alert-3

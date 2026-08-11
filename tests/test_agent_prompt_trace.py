@@ -33,6 +33,7 @@ class RecordingLangfuseClient:
 def test_agent_links_prompt_version_to_trace_and_generation(monkeypatch) -> None:
     monkeypatch.setenv("LANGFUSE_PUBLIC_KEY", "test-public-key")
     monkeypatch.setenv("LANGFUSE_SECRET_KEY", "test-secret-key")
+    monkeypatch.setenv("OTEL_SDK_DISABLED", "true")
     monkeypatch.setenv("LANGFUSE_PROMPT_NAME", "day13-chat")
     monkeypatch.setenv("LANGFUSE_PROMPT_LABEL", "production")
     client = RecordingLangfuseClient()

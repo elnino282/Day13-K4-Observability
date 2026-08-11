@@ -1,0 +1,3 @@
+{"event":"request_received","correlation_id":"req-55df65d0","payload":{"message_preview":"What is your refund policy? My email is [REDACTED_EMAIL]"}}
+{"event":"request_received","correlation_id":"req-81e3b816","payload":{"message_preview":"Here is my phone [REDACTED_PHONE_VN], what should be logged?"}}
+{"event":"request_received","correlation_id":"req-249ab617","payload":{"message_preview":"What is the policy for PII and credit card [REDACTED_CREDIT_CARD]?"}}

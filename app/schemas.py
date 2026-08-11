@@ -21,6 +21,7 @@ class ChatResponse(BaseModel):
     tokens_out: int
     cost_usd: float
     quality_score: float
+    trace_id: str | None = None
 
 
 class LogRecord(BaseModel):
@@ -38,6 +39,8 @@ class LogRecord(BaseModel):
     tokens_in: int | None = None
     tokens_out: int | None = None
     cost_usd: float | None = None
+    quality_score: float | None = None
+    trace_id: str | None = None
     error_type: str | None = None
     tool_name: str | None = None
     payload: dict[str, Any] | None = None
