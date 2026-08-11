@@ -61,7 +61,7 @@ Với mỗi thành viên, ghi rõ nhiệm vụ và link commit/PR tương ứng.
 | Thành viên | Phần việc | Commit/PR | Điều đã học |
 |---|---|---|---|
 | Hồ Ngọc Quỳnh | `app/main.py`, `app/middleware.py`, `app/pii.py`, `app/metrics.py`, test core và evidence đầu tiên | `06c7ac1`, `c775ae7` | **Tự điền** |
-| Nguyễn Duy Bách | Dashboard Streamlit `ui/app.py`, `ui/data.py`, `scripts/run_demo.py`, kịch bản demo | `5ec33b8` | **Tự điền** |
+| Nguyễn Duy Bách | Dashboard Streamlit `ui/app.py`, `ui/data.py`, `scripts/run_demo.py`, kịch bản demo | `5ec33b8` | Qua repo này, tôi đã học được cách xây dựng hệ thống observability hoàn chỉnh cho ứng dụng AI: ghi log JSON có cấu trúc với correlation ID và loại bỏ PII, gắn trace để theo dõi latency/token/cost bằng Langfuse kèm prompt versioning (label, rollback), và quan trọng nhất là luồng điều tra incident từ Metrics → Traces → Logs để xác định root cause. |
 | Hoàng Văn Huy | `tests/test_logging_contract.py`: correlation ID, enrichment, PII và log lỗi | `0a3023c` | **Tự điền** |
 | Chu Quang Hiếu | Regenerate log sạch đạt 100/100, cập nhật evidence và toàn bộ report | **Điền SHA commit report sau khi push** | Baseline P95 mới là sự cố, mean thì k: với cả 15 requests, mean chỉ 863 ms < 2000 ms, chỉ p95 = 2654 ms mới vượt ngưỡng. Nên đặt SLO trên percentile đuôi thay vì trên mean. |
 | Nguyễn Đình Liên Thành | **Tự khai** | **Chưa có commit** | **Tự điền** |
