@@ -43,7 +43,13 @@ agent = LabAgent()
 
 @app.get("/health")
 async def health() -> dict:
-    return {"ok": True, "tracing_enabled": tracing_enabled(), "incidents": status()}
+    return {
+        "ok": True,
+        "tracing_enabled": tracing_enabled(),
+        "incidents": status(),
+        "llm_provider": agent.provider,
+        "model": agent.model,
+    }
 
 
 @app.get("/metrics")
