@@ -2,9 +2,9 @@ service: day13-observability-lab
 window: 28d
 slis:
   latency_p95_ms:
-    objective: 3000
+    objective: 2000
     target: 99.5
-    note: 99.5% cửa sổ đo phải giữ P95 không vượt quá 3 giây.
+    note: 99.5% cửa sổ đo phải giữ P95 không vượt quá 2 giây, khớp ngưỡng latency của challenge K4.
   error_rate_pct:
     objective: 2
     target: 99.0

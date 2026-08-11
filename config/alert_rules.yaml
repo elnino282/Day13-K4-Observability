@@ -2,10 +2,10 @@ alerts:
   - name: user_latency_slo_breach
     severity: critical
     sli: latency_p95_ms
-    condition: latency_p95_ms > 3000 for 5m
+    condition: latency_p95_ms > 2000 for 5m
     duration: 5m
     type: symptom-based
-    user_impact: Người dùng chờ phản hồi AI quá 3 giây ở phần đuôi phân phối.
+    user_impact: Người dùng chờ phản hồi AI quá 2 giây ở phần đuôi phân phối.
     owner: observability-on-call
     runbook: docs/alerts.md#alert-1
 

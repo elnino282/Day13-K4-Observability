@@ -41,6 +41,25 @@ app.add_middleware(CorrelationIdMiddleware)
 agent = LabAgent()
 
 
+@app.exception_handler(Exception)
+async def generic_exception_handler(request: Request, exc: Exception) -> JSONResponse:
+    """Keep the request identifier available even for unexpected server errors."""
+    correlation_id = getattr(request.state, "correlation_id", "unknown")
+    error_type = type(exc).__name__
+    record_error(error_type)
+    log.error(
+        "unhandled_exception",
+        service="api",
+        error_type=error_type,
+        payload={"detail": str(exc)},
+    )
+    return JSONResponse(
+        status_code=500,
+        content={"detail": error_type},
+        headers={"x-request-id": correlation_id},
+    )
+
+
 @app.get("/health")
 async def health() -> dict:
     return {

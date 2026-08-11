@@ -14,6 +14,12 @@ Giao diện gồm năm khu vực:
 - **Chat trực tiếp**: gọi `POST /chat` và hiển thị correlation ID, trace ID, latency, token, cost, quality.
 - **Metrics**: đúng sáu panel từ `config/dashboard.yaml`, đọc `data/logs.jsonl` và refresh 30 giây.
 - **Vận hành**: bật/tắt practice incidents, xem alerts, structured logs và audit trail.
+UI showcase cho Day 13 Observability. Giao diện gồm năm khu vực:
+
+- **Overview**: trạng thái hệ thống và luồng điều tra Metrics → Traces → Logs.
+- **Live Chat**: gọi `POST /chat` và hiển thị correlation ID, trace ID, latency, token, cost, quality.
+- **Metrics**: đúng sáu panel từ `config/dashboard.yaml`, đọc `data/logs.jsonl` và refresh 30 giây.
+- **Operations**: bật/tắt practice incidents, xem alerts, structured logs và audit trail.
 - **Evidence**: tổng hợp các hạng mục đã hoàn thành và runtime proof.
 
 Chạy toàn bộ demo bằng một lệnh. Script chạy preflight tests/validators, mở API + UI và tự dừng cả hai khi nhấn `Ctrl+C`:
