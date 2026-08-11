@@ -4,8 +4,8 @@ import time
 from dataclasses import dataclass
 
 from . import metrics
+from .llm import build_llm
 from .logging_config import get_logger
-from .mock_llm import FakeLLM
 from .mock_rag import retrieve
 from .pii import hash_user_id, summarize_text
 from .prompt_management import ResolvedPrompt, resolve_prompt
@@ -27,9 +27,10 @@ class AgentResult:
 
 
 class LabAgent:
-    def __init__(self, model: str = "claude-sonnet-4-5") -> None:
-        self.model = model
-        self.llm = FakeLLM(model=model)
+    def __init__(self, model: str | None = None) -> None:
+        self.llm = build_llm(model)
+        self.model = self.llm.model
+        self.provider = self.llm.provider
 
     @observe(name="agent.run", capture_input=False, capture_output=False)
     def run(
@@ -172,8 +173,12 @@ class LabAgent:
         return response, cost_usd
 
     def _estimate_cost(self, tokens_in: int, tokens_out: int) -> float:
-        input_cost = (tokens_in / 1_000_000) * 3
-        output_cost = (tokens_out / 1_000_000) * 15
+        if self.model == "gemini-3.1-flash-lite":
+            input_rate, output_rate = 0.25, 1.50
+        else:
+            input_rate, output_rate = 3.0, 15.0
+        input_cost = (tokens_in / 1_000_000) * input_rate
+        output_cost = (tokens_out / 1_000_000) * output_rate
         return round(input_cost + output_cost, 6)
 
     def _heuristic_quality(self, question: str, answer: str, docs: list[str]) -> float:

@@ -1,5 +1,9 @@
 [theme]
 base = "dark"
+primaryColor = "#7C6CFF"
+backgroundColor = "#0D0F14"
+secondaryBackgroundColor = "#151820"
+textColor = "#F5F7F9"
 primaryColor = "#8B5CF6"
 backgroundColor = "#090B10"
 secondaryBackgroundColor = "#11141C"
@@ -12,3 +16,6 @@ runOnSave = true
 
 [browser]
 gatherUsageStats = false
+
+[client]
+showSidebarNavigation = false

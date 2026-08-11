@@ -1,5 +1,19 @@
 # SignalOps UI
 
+UI showcase cho Day 13 Observability. `app.py` chỉ là entrypoint; phần triển khai được chia theo trách nhiệm:
+
+- `settings.py`: đường dẫn, biến môi trường và config runtime.
+- `theme.py`: dark theme và responsive CSS.
+- `components.py`: KPI cards, panel headers và biểu đồ dùng lại.
+- `services.py`: API health, log quality, Langfuse và demo traffic.
+- `pages/`: năm màn hình độc lập.
+
+Giao diện gồm năm khu vực:
+
+- **Tổng quan**: trạng thái hệ thống và luồng điều tra Metrics → Traces → Logs.
+- **Chat trực tiếp**: gọi `POST /chat` và hiển thị correlation ID, trace ID, latency, token, cost, quality.
+- **Metrics**: đúng sáu panel từ `config/dashboard.yaml`, đọc `data/logs.jsonl` và refresh 30 giây.
+- **Vận hành**: bật/tắt practice incidents, xem alerts, structured logs và audit trail.
 UI showcase cho Day 13 Observability. Giao diện gồm năm khu vực:
 
 - **Overview**: trạng thái hệ thống và luồng điều tra Metrics → Traces → Logs.
