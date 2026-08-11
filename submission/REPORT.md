@@ -10,7 +10,7 @@
 | Thành viên | MSSV | Git author | Vai trò |
 |---|---|---|---|
 | Hồ Ngọc Quỳnh | 2A202601684 | `elnino282` | Logging, PII, metrics và tracing core |
-| Nguyễn Duy Bách | 2A202601439 | `Nayumi.DEV` | Dashboard UI, SLO/alert và script demo |
+| Nguyễn Duy Bách | 2A202601844 | `Nayumi.DEV` | Dashboard UI, SLO/alert và script demo |
 | Hoàng Văn Huy | 2A202601356 | `hoanghuy06072004gtc-sketch` | Contract test cho logging và observability |
 | Chu Quang Hiếu | 2A202601344 | `quanghieu4438` | Report, evidence và điều tra challenge |
 | Nguyễn Đình Liên Thành | 2A202601790 | **chưa có commit** | **Tự khai phần việc và tạo commit tương ứng** |
