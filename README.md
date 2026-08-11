@@ -46,6 +46,29 @@ Trong lab này, Langfuse dùng cho trace và prompt versioning; nguồn chuẩn 
 
 Kết quả đúng ở bước 6 phải có dòng `HỢP LỆ: 6/6 panel`. Lệnh này chỉ kiểm tra contract; ảnh dashboard runtime vẫn phải nộp.
 
+## UI showcase cho live demo
+
+Repo có thêm SignalOps UI để trình diễn chatbot, sáu nhóm metrics, incident controls, logs, SLO/alerts và trạng thái hoàn thành trong cùng một workspace. Cách nhanh nhất:
+
+```powershell
+conda activate day13
+python scripts/run_demo.py
+```
+
+Script chạy preflight checks, khởi động cả API/UI và tự dừng hai service khi nhấn `Ctrl+C`. Hoặc chạy thủ công ở hai terminal:
+
+```powershell
+conda activate day13
+uvicorn app.main:app --reload --env-file .env
+```
+
+```powershell
+conda activate day13
+streamlit run ui/app.py
+```
+
+Mở `http://127.0.0.1:8501`. Chi tiết từng màn hình nằm trong [`ui/README.md`](ui/README.md).
+
 ## Practice và challenge chính thức
 
 - Practice luôn dùng được: `python scripts/inject_incident.py --scenario rag_slow`.
