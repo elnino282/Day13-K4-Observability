@@ -26,6 +26,7 @@ def test_gemini_llm_maps_text_and_usage_without_network(monkeypatch) -> None:
     class Models:
         def generate_content(self, **kwargs):
             assert kwargs["model"] == "gemini-3.1-flash-lite"
+            assert kwargs["config"]["max_output_tokens"] == 1024
             return response
 
     class Client:

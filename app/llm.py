@@ -22,6 +22,9 @@ class GeminiLLM:
             raise RuntimeError("GEMINI_API_KEY is required when LLM_PROVIDER=gemini")
         self.api_key = api_key
         self.model = model
+        self.max_output_tokens = int(os.getenv("GEMINI_MAX_OUTPUT_TOKENS", "1024"))
+        if self.max_output_tokens < 64:
+            raise RuntimeError("GEMINI_MAX_OUTPUT_TOKENS must be at least 64")
 
     def generate(self, prompt: str) -> FakeResponse:
         try:
@@ -33,7 +36,7 @@ class GeminiLLM:
             response = client.models.generate_content(
                 model=self.model,
                 contents=prompt,
-                config={"max_output_tokens": 512},
+                config={"max_output_tokens": self.max_output_tokens},
             )
 
         text = (response.text or "").strip()
