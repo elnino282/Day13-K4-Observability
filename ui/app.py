@@ -229,7 +229,7 @@ def fetch_langfuse_snapshot() -> dict[str, Any]:
 
 INCIDENT_PLAYBOOKS = {
     "rag_slow": {
-        "metric": "P95 latency rises above the 3,000 ms SLO line.",
+        "metric": "P95 latency rises above the 2,000 ms SLO line.",
         "trace": "Open a slow trace; rag.retrieve dominates the waterfall.",
         "log": "retrieval_completed has the same correlation ID and elevated latency_ms.",
         "root": "Injected retrieval delay in the mock vector-store path.",
@@ -586,7 +586,7 @@ def render_metrics(minutes: int) -> None:
 
     top = st.columns(6)
     values = [
-        ("P95 latency", f"{snap.latency_p95:.0f} ms", note_with_delta(f"≤ {panels['latency']['threshold']['value']} ms", "latency_p95", snap.latency_p95, decimals=0), snap.latency_p95 <= 3000),
+        ("P95 latency", f"{snap.latency_p95:.0f} ms", note_with_delta(f"≤ {panels['latency']['threshold']['value']} ms", "latency_p95", snap.latency_p95, decimals=0), snap.latency_p95 <= panels["latency"]["threshold"]["value"]),
         ("Traffic", f"{snap.request_count}", note_with_delta(f"{snap.request_rate_per_minute:.1f} req/min", "request_count", snap.request_count, decimals=0), True),
         ("Error rate", f"{snap.error_rate_pct:.2f}%", note_with_delta("SLO ≤ 2%", "error_rate_pct", snap.error_rate_pct, decimals=2), snap.error_rate_pct <= 2),
         ("Cost", f"${snap.total_cost_usd:.4f}", note_with_delta("Window total", "total_cost_usd", snap.total_cost_usd, decimals=4), snap.total_cost_usd <= 2.5),
@@ -604,7 +604,8 @@ def render_metrics(minutes: int) -> None:
             panel_intro("01 · Latency", "Tail latency", "P50 / P95 / P99 in milliseconds · red line = P95 SLO")
             st.altair_chart(
                 line_chart(series, ["latency_p50", "latency_p95", "latency_p99"], ["P50", "P95", "P99"],
-                           ["#22d3ee", "#8b5cf6", "#fbbf24"], unit_title="ms", threshold=3000),
+                           ["#22d3ee", "#8b5cf6", "#fbbf24"], unit_title="ms",
+                           threshold=panels["latency"]["threshold"]["value"]),
                 width="stretch",
             )
         with st.container(border=True):

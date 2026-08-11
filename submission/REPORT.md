@@ -41,7 +41,7 @@
 
 - Kết quả `validate_dashboard.py`: `HỢP LỆ: 6/6 panel` — [evidence](evidence/validate-dashboard.txt).
 - Evidence dashboard: **Bổ sung ảnh runtime sau khi merge giao diện của thành viên phụ trách dashboard.**
-- SLO đã chọn và lý do: P95 ≤ 3.000 ms (99,5%), error rate ≤ 2% (99%), daily cost ≤ 2,5 USD và quality trung bình ≥ 0,75. Các ngưỡng khớp dashboard contract và đo trực tiếp trải nghiệm/chi phí.
+- SLO đã chọn và lý do: P95 ≤ 2.000 ms (99,5%), error rate ≤ 2% (99%), daily cost ≤ 2,5 USD và quality trung bình ≥ 0,75. Ngưỡng latency hạ từ 3.000 xuống 2.000 ms cho khớp `latency_threshold_ms` của challenge: với 3.000 ms thì sự cố `rag_slow` (P95 2.654 ms) vẫn nằm dưới ngưỡng và alert không bao giờ bắn dù người dùng đã chờ gấp 4 lần baseline. Các ngưỡng còn lại khớp dashboard contract và đo trực tiếp trải nghiệm/chi phí.
 - Alert rules và runbook: ba alert latency, error và cost có severity, duration, owner và mitigation tại `config/alert_rules.yaml` và `docs/alerts.md`.
 
 ## 6. Điều tra challenge
@@ -63,5 +63,5 @@ Với mỗi thành viên, ghi rõ nhiệm vụ và link commit/PR tương ứng.
 | Hồ Ngọc Quỳnh | `app/main.py`, `app/middleware.py`, `app/pii.py`, `app/metrics.py`, test core và evidence đầu tiên | `06c7ac1`, `c775ae7` | **Tự điền** |
 | Nguyễn Duy Bách | Dashboard Streamlit `ui/app.py`, `ui/data.py`, `scripts/run_demo.py`, kịch bản demo | `5ec33b8` | **Tự điền** |
 | Hoàng Văn Huy | `tests/test_logging_contract.py`: correlation ID, enrichment, PII và log lỗi | `0a3023c` | **Tự điền** |
-| Chu Quang Hiếu | Regenerate log sạch đạt 100/100, cập nhật evidence và toàn bộ report | **Điền SHA commit report sau khi push** | Baseline P95 mới là sự cố, P50 thì k: baseline P50 158ms, P95 lên tận 671ms. SLO phải đặt trên percentile đuôi, k nên đặt trên trung vị. |
+| Chu Quang Hiếu | Regenerate log sạch đạt 100/100, cập nhật evidence và toàn bộ report | **Điền SHA commit report sau khi push** | Baseline P95 mới là sự cố, mean thì k: với cả 15 requests, mean chỉ 863 ms < 2000 ms, chỉ p95 = 2654 ms mới vượt ngưỡng. Nên đặt SLO trên percentile đuôi thay vì trên mean. |
 | Nguyễn Đình Liên Thành | **Tự khai** | **Chưa có commit** | **Tự điền** |

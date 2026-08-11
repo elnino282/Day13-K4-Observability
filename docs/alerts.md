@@ -6,8 +6,8 @@ Mỗi alert phải dựa trên triệu chứng người dùng hoặc SLO, không
 
 - Tên: `user_latency_slo_breach`
 - Severity: Critical.
-- SLI/SLO liên quan: P95 latency ≤ 3.000 ms, mục tiêu 99,5% trong 28 ngày.
-- Điều kiện và thời gian duy trì: P95 > 3.000 ms liên tục 5 phút.
+- SLI/SLO liên quan: P95 latency ≤ 2.000 ms, mục tiêu 99,5% trong 28 ngày.
+- Điều kiện và thời gian duy trì: P95 > 2.000 ms liên tục 5 phút.
 - Ảnh hưởng tới người dùng: phản hồi AI chậm ở phần đuôi phân phối.
 - Ba bước kiểm tra đầu tiên:
   1. Xác nhận P50/P95/P99 và traffic trong cùng cửa sổ 5 phút.
