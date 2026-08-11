@@ -46,6 +46,7 @@ def test_agent_links_prompt_version_to_trace_and_generation(monkeypatch) -> None
         feature="qa",
         session_id="session-01",
         message="Explain traces",
+        correlation_id="req-deadbeef",
     )
 
     trace_metadata = client.trace_updates[-1]["metadata"]
@@ -55,6 +56,7 @@ def test_agent_links_prompt_version_to_trace_and_generation(monkeypatch) -> None
         "prompt_label": "production",
         "prompt_version": "3",
         "prompt_source": "langfuse",
+        "correlation_id": "req-deadbeef",
     }
     assert generation_update["prompt"] is client.prompt
     assert generation_update["metadata"]["prompt_version"] == "3"

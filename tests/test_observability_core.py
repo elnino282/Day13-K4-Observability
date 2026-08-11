@@ -32,7 +32,7 @@ def test_request_context_propagates_and_pii_is_scrubbed(monkeypatch, tmp_path: P
 
     assert response.status_code == 200
     assert response.headers["x-request-id"] == "req-deadbeef"
-    assert response.headers["x-response-time-ms"].isdigit()
+    assert re.fullmatch(r"\d+\.\d", response.headers["x-response-time-ms"])
     assert response.json()["correlation_id"] == "req-deadbeef"
 
     api_records = [record for record in _records(log_path) if record["service"] == "api"]

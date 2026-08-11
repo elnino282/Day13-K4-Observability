@@ -26,8 +26,8 @@ class CorrelationIdMiddleware(BaseHTTPMiddleware):
         start = time.perf_counter()
         response = await call_next(request)
         
-        elapsed_ms = int((time.perf_counter() - start) * 1000)
+        elapsed_ms = (time.perf_counter() - start) * 1000
         response.headers["x-request-id"] = correlation_id
-        response.headers["x-response-time-ms"] = str(elapsed_ms)
+        response.headers["x-response-time-ms"] = f"{elapsed_ms:.1f}"
         
         return response

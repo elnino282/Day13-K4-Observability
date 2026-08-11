@@ -39,3 +39,25 @@ def test_recursive_scrub_covers_nested_sensitive_values() -> None:
     assert "REDACTED_EMAIL" in rendered
     assert "REDACTED_CREDIT_CARD" in rendered
     assert "REDACTED_PASSPORT" in rendered
+
+
+def test_scrub_passport_and_vietnamese_address_formats() -> None:
+    samples = (
+        ("Passport B1234567", "B1234567", "REDACTED_PASSPORT"),
+        ("Passport C12345678", "C12345678", "REDACTED_PASSPORT"),
+        (
+            "Địa chỉ: 123 Đường Lê Lợi, Quận 1, Thành phố Hồ Chí Minh",
+            "123 Đường Lê Lợi",
+            "REDACTED_ADDRESS_VN",
+        ),
+        (
+            "Gửi đến 42A Đường Nguyễn Huệ, Quận 1",
+            "42A Đường Nguyễn Huệ",
+            "REDACTED_ADDRESS_VN",
+        ),
+    )
+
+    for text, sensitive_value, redaction_marker in samples:
+        scrubbed = scrub_text(text)
+        assert sensitive_value not in scrubbed
+        assert redaction_marker in scrubbed
