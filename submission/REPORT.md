@@ -4,7 +4,7 @@
 
 - Tên nhóm: C5-3
 - Repository URL: https://github.com/elnino282/Day13-K4-Observability
-- Commit SHA đối chiếu: `df2839c` (HEAD tại thời điểm rà soát). Trước khi nộp, cập nhật bằng SHA của commit cuối cùng sau khi đã thêm toàn bộ evidence.
+- Commit SHA đối chiếu: `843ad9d2daaf75380ccf6b43948a07a17d32a370` (HEAD tại thời điểm rà soát). Trước khi nộp, cập nhật bằng SHA của commit cuối cùng sau khi đã thêm toàn bộ evidence.
 - Thành viên và vai trò:
 
 | Thành viên | MSSV | Git author | Vai trò |
